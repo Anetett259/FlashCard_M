@@ -1,0 +1,115 @@
+:root {
+    --text-color: #DBE4EF;
+    --card-front-color: #144480;
+    --card-back-color: #00F4BF;
+}
+
+body {
+    background: url(img/bg-desktop.webp);
+    font-family: Bai Jamjuree;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 4rem;
+    gap: 3rem;
+}
+
+.cartao {
+    margin: 1rem 1rem; /*Define uma margem redor do cartão*/
+    height: 20rem; /* altura do cartão*/
+    flex-grow: 1; /*expandir para ocupar o espaço restante se houver outros elementos*/
+    flex-basis: calc(33% -6rem);/*Define a largura inicial do cartão como um terço da largura do contêiner menos 6 rem*/
+}
+
+.cartao__conteudo {
+    background-color: var(--card-front-color); 
+    text-align: center;
+    height: 100%; /*ocupar 100% da altura do contêiner pai*/
+    transform-style: preserve-3d; /*trasforma 3D, cria efeito profundidade*/
+    transition: transform 300ms ease-in-out; /*transição durará 300 milissegundos efeito suave*/
+}
+
+
+.cartao__conteudo h3 {
+    color: var(--text-color);
+    border: 1px solid var(--text-color); /* Cria uma borda de 1 pixel ao redor do <h3>*/
+    text-align: left; /*Alinha o texto dentro do <h3>*/
+    padding: 0.5rem; /*espaçamento interno ao redor do conteúdo do <h3>*/
+    position: absolute; /*controle preciso da posição do elemento*/
+    margin: 0.6rem; /*margem externa*/
+    border-radius: 0.6rem; /*Arredonda as bordas da borda do <h3>*/
+    font-size: 1vw; /*torna o texto responsivo ajustando seu tamanho conforme tela*/
+    backface-visibility: hidden; /*é usada para esconder o verso do elemento quando ele é rotacionado em um espaço 3D*/
+}
+
+.cartao__conteudo p {
+    margin-top: 1rem;
+    padding: 2rem; /*espaçamento interno de 2 rem ao redor do conteúdo do parágrafo*/
+    margin-top: 4rem; /*Isso afasta o parágrafo do elemento superior em 4 rem*/
+    font-size: 1.4vw; /*fazendo o texto ajustar seu tamanho conforme a largura da tela*/
+}
+
+.cartao__conteudo__pergunta p {
+    color: var(--text-color );
+    font-weight: 500; /*espessura do texto*/
+}
+
+.cartao__conteudo__resposta p {
+    color: var(--card-back-color);
+    font-weight: 700; /*espessura do texto*/
+}
+
+.cartao.active .cartao__conteudo { /*aplica o estilo ao elemento .cartao enquanto ele está sendo clicado*/
+    transform: rotateY(180deg); /*cria a ilusão de que o cartão foi "virado" para mostrar seu verso*/
+}
+
+.cartao__conteudo__pergunta, 
+.cartao__conteudo__resposta {
+    backface-visibility: hidden; /*esconde o verso do elemento*/
+    position: absolute; /*posicionamento dos elementos como absoluto*/
+    width: 100%; /*ocupe 100% da largura e altura do contêiner pai*/
+    height: 100%;
+    box-sizing: border-box; /*Inclui as bordas e o padding dentro das dimensões totais do elemento*/
+}
+
+.cartao__conteudo__resposta {
+    transform: rotateY(180deg); /*Gira o elemento lado "resposta" seja exibido*/
+    background-color: rgba(0, 244, 191, 0,2);  /*Define a cor de fundo do elemento*/
+    border: 4px solid var(--card-back-color); /*Aplica uma borda sólida de 4 pixels ao redor do elemento*/
+}
+
+/* RODAPÉ */
+footer {
+    background-color: black;
+    color: white;
+    bottom:0;
+    position:fixed;
+    width:100%;
+    height:2rem;
+}
+footer p{
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 0,5rem;
+}
+
+/* RESPONSIVIDADE  */
+@media (max-width: 560px) {
+    body{
+        background: url(img/bg-desktop.webp), no-repeat cover;
+
+    }
+    .cartao{
+        flex: 1 0 calc(100% - 1rem)
+    }
+    .cartao__conteudo h3 {
+        font-size: 3vw;
+    }
+    .cartao__conteudo p {
+        font-size: 3.8vw;
+    }
+
+}
